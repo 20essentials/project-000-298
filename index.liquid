@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pyramid Pattern Custom</title>
+    <meta name="google" content="notranslate" />
+    <link rel="shortcut icon" href="assets/favicon.webp" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    {% for _ in (1..12) %}
+      <article class="row">
+        {% for i in (0..49) %}
+          {% assign odd = i | times: 2 | minus: 1 %}
+          <div style="--x-odd: {{ odd }}" class="pyramid pyramid-top">
+            <div class="side side-front"></div>
+            <div class="side side-right"></div>
+            <div class="side side-left"></div>
+            <div class="side side-bottom"></div>
+          </div>
+          <div style="--x-even: {{ i }}" class="pyramid pyramid-bottom">
+            <div class="side side-front"></div>
+            <div class="side side-right"></div>
+            <div class="side side-left"></div>
+            <div class="side side-bottom"></div>
+          </div>
+        {% endfor %}
+      </article>
+    {% endfor %}
+
+    <script>
+      document.addEventListener('click', e => {
+        if (e.target.matches('.side')) {
+          e.target.closest('.pyramid').classList.toggle('pausa');
+        }
+      });
+    </script>
+  </body>
+</html>
